@@ -3,6 +3,7 @@
 	"displayName": "fromTemplate",
 	"description": "Insert template in to blank document",
 	"version": "0.1.0",
+	"publisher": "SPK80",
 	"repository": {
     "type": "git",
     "url": "https://github.com/SPK80/fromTemplate.git"
