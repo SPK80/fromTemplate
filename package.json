@@ -22,10 +22,21 @@
 		"commands": [
 			{
 				"command": "fromTemplate.insert",
-				"title": "insert template"
+				"title": "insert from template"
 			}
-		]
+		],
+		"configuration": {
+			"title": "From Template Config",
+			"properties": {
+					"fromTemplate.templateFile": {
+						"type": "string",
+						"default": "_template.*",
+						"description": "Template File Name. '.*' "
+					}
+				}
+			}
 	},
+	
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",

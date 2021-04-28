@@ -4,6 +4,22 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 
+
+function prepareTemplatePath(documentPath) {
+	let templatePath = vscode.workspace
+		.getConfiguration('fromTemplate')
+		.get('templateFile');
+
+	const dir = path.dirname(documentPath)
+	const ext = path.extname(documentPath)
+
+	if (path.extname(templatePath) == '.*') {
+		templatePath = templatePath.substr(0, templatePath.lastIndexOf(".")) + ext;
+	}
+
+	return path.resolve(dir, templatePath)
+}
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -14,16 +30,13 @@ function activate(context) {
 
 	const command = vscode.commands.registerTextEditorCommand('fromTemplate.insert',
 		textEditor => {
-			const fsPath = textEditor.document.uri.fsPath;
-			const dir = path.dirname(fsPath)
-			const ext = path.extname(fsPath)
-			const templPath = `${dir}${path.sep}_template${ext}`
 
 			if (textEditor.document.getText().length > 0) {
 				vscode.window.showInformationMessage('document is not empty')
 			}
 			else {
-				fs.readFile(templPath, (err, data) => {
+				const templatePath = prepareTemplatePath(textEditor.document.uri.fsPath)
+				fs.readFile(templatePath, (err, data) => {
 					if (!err && data) {
 						textEditor.edit(editBuilder =>
 							editBuilder.insert(new vscode.Position(0, 0), data.toString() + '\n')
