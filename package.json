@@ -2,7 +2,7 @@
 	"name": "fromtemplate",
 	"displayName": "fromTemplate",
 	"description": "Inserts template in to blank document",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "SPK80",
 	"repository": {
     "type": "git",
