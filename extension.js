@@ -29,6 +29,10 @@ function activate(context) {
 							editBuilder.insert(new vscode.Position(0, 0), data.toString() + '\n')
 						)
 					}
+					else {
+						vscode.window.
+							showInformationMessage(`readFile error: ${err}`)
+					}
 				})
 			}
 		})
